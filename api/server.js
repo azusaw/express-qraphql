@@ -3,19 +3,21 @@ const { graphqlHTTP } = require("express-graphql")
 const { buildSchema } = require("graphql")
 const cors = require('cors')
 
+
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
+const schema = buildSchema(`
   type Query {
     hello: String
+    hello2: String
   }
-`)
+`);
 
 // The root provides a resolver function for each API endpoint
-var root = {
-  hello: () => {
-    return "Hello world!"
-  },
-}
+const root = {
+  hello: () => 'Hello, GraphQL!',
+  hello2: () => 'Hello2, GraphQL!',
+};
+
 
 var app = express()
 app.use(cors())
@@ -24,7 +26,7 @@ app.use(
   graphqlHTTP({
     schema: schema,
     rootValue: root,
-    graphiql: true,
+    graphiql: true, // Enable GraphQL for testing the API in the browser
   })
 )
 app.listen(4000)
