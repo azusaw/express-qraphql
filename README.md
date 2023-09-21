@@ -1,7 +1,6 @@
 # express-qraphql
 
-
-### Start  server
+### Start server
 ```
 # graphql
 cd ./api
